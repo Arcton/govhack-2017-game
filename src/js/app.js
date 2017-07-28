@@ -2,6 +2,7 @@ import Tock from 'tocktimer';
 import City from './model/city';
 import Upgrade from './model/upgrade';
 import Main from './views/main';
+import { sumPropertyValues } from './utils';
 import styles from '../scss/app.scss';
 
 class ExampleUpgrade extends Upgrade {
@@ -23,18 +24,23 @@ class ExampleCity extends City {
   }
 }
 
-const cities = [new ExampleCity()];
-
-const tick = new Tock({
+const cities = [new ExampleCity(), new ExampleCity()];
+let prevTick = 0;
+const timer = new Tock({
   interval: 100,
   callback: () => {
+    const totalElapsedTime = timer.lap();
+    const elapsedMs = totalElapsedTime - prevTick;
+    prevTick = totalElapsedTime;
+    const resourcesDelta = {};
     cities.forEach((city) => {
-      console.log(city.tick());
+      sumPropertyValues(resourcesDelta, city.tick(elapsedMs));
     });
+    console.log(resourcesDelta);
   },
 });
 
-tick.start();
+timer.start();
 
 const mainView = new Main();
 

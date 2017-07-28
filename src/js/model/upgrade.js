@@ -10,9 +10,8 @@ export default class Upgrade {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  tick(/* elapsedTicks */) {
+  tick(/* elapsedMs */) {
     // handle tick for an upgrade
-    // if multiple ticks have elapsed since the last tick, elapsedTicks > 1 (otherwise = 1)
     // returns an object of { resource: netAmount }
   }
 }
