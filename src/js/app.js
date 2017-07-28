@@ -1,6 +1,7 @@
 import Tock from 'tocktimer';
 import City from './model/city';
 import Upgrade from './model/upgrade';
+import Main from './views/main';
 import styles from '../scss/app.scss';
 
 class ExampleUpgrade extends Upgrade {
@@ -34,3 +35,9 @@ const tick = new Tock({
 });
 
 tick.start();
+
+const mainView = new Main({
+  selector: '[data-hook=main-outlet]',
+});
+
+mainView.render();
