@@ -36,8 +36,7 @@ const tick = new Tock({
 
 tick.start();
 
-const mainView = new Main({
-  selector: '[data-hook=main-outlet]',
-});
+const mainView = new Main();
 
 mainView.render();
+document.querySelector('[data-hook=main-outlet]').appendChild(mainView.el);
