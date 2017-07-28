@@ -11,9 +11,9 @@ class ExampleUpgrade extends Upgrade {
     this.improve();
   }
 
-  tick(elapsedTicks) {
+  getResourcesDelta(elapsedMs) {
     return {
-      exampleResouce: elapsedTicks * this.level,
+      exampleResouce: elapsedMs * this.level,
     };
   }
 }

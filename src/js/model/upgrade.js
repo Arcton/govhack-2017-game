@@ -10,8 +10,13 @@ export default class Upgrade {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  tick(/* elapsedMs */) {
-    // handle tick for an upgrade
+  getResourcesDelta(/* elapsedMs */) {
     // returns an object of { resource: netAmount }
+    // must have NO side affects
+  }
+
+  tick(elapsedMs) {
+    // handle tick for an upgrade
+    return this.getResourcesDelta(elapsedMs);
   }
 }
