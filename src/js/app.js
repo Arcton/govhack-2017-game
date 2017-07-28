@@ -1,7 +1,7 @@
 import Tock from 'tocktimer';
 import City from './model/city';
 import Upgrade from './model/upgrade';
-import styles from './scss/app.scss';
+import styles from '../scss/app.scss';
 
 class ExampleUpgrade extends Upgrade {
   constructor() {
