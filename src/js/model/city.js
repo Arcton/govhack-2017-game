@@ -1,18 +1,28 @@
+import State from 'ampersand-state';
+import Collection from 'ampersand-collection';
+import Upgrade from './upgrade';
 import { sumPropertyValues } from '../utils';
 
-export default class City {
-  constructor(name /* string */, upgrades /* [Upgrade] */) {
-    this.name = name;
-    this.upgrades = upgrades;
-  }
+const UpgradeCollection = Collection.extend({
+  model: Upgrade,
+});
 
-  tick(elapsedMs) {
+export default State.extend({
+  props: {
+    name: 'string',
+  },
+
+  collections: {
+    upgrades: UpgradeCollection,
+  },
+
+  tick(elapsedTicks) {
     // handle tick for a city
     // returns an object of { resource: netAmount }
     const resourcesDelta = {};
     this.upgrades.forEach((upgrade) => {
-      sumPropertyValues(resourcesDelta, upgrade.tick(elapsedMs));
+      sumPropertyValues(resourcesDelta, upgrade.tick(elapsedTicks));
     });
     return resourcesDelta;
-  }
-}
+  },
+});

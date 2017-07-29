@@ -1,22 +1,29 @@
-export default class Upgrade {
-  constructor(name) {
-    this.name = name;
-    this.level = 0;
-  }
+import State from 'ampersand-state';
+
+export default State.extend({
+  props: {
+    name: 'string',
+    level: 'number',
+  },
+
+  initialize(attributes, options) {
+    this.level = this.level || 0;
+    this.deltaCallback = options.deltaCallback;
+  },
 
   improve() {
     // TODO: how to define/get the cost?
     this.level += 1;
-  }
+  },
 
-  // eslint-disable-next-line class-methods-use-this
-  getResourcesDelta(/* elapsedMs */) {
+  getResourcesDelta(elapsedTicks) {
     // returns an object of { resource: netAmount }
     // must have NO side affects
-  }
+    return this.deltaCallback(elapsedTicks);
+  },
 
-  tick(elapsedMs) {
+  tick(elapsedTicks) {
     // handle tick for an upgrade
-    return this.getResourcesDelta(elapsedMs);
-  }
-}
+    return this.getResourcesDelta(elapsedTicks);
+  },
+});

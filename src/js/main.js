@@ -4,29 +4,23 @@ import Upgrade from './model/upgrade';
 import ResourcePool from './model/resource-pool';
 import { sumPropertyValues } from './utils';
 
-class ExampleUpgrade extends Upgrade {
-  constructor() {
-    super('Example Upgrade');
-    this.improve();
-  }
-
-  getResourcesDelta(elapsedTicks) {
+const exampleUpgrade = new Upgrade({}, {
+  deltaCallback(elapsedTicks) {
     return {
       mining: elapsedTicks * this.level,
       tourism: elapsedTicks * this.level * 2,
     };
-  }
-}
+  },
+});
+exampleUpgrade.improve();
 
-class ExampleCity extends City {
-  constructor() {
-    super('Example City', [new ExampleUpgrade()]);
-  }
-}
+const exampleCity = new City({
+  upgrades: [exampleUpgrade],
+});
 
 const resourcePool = new ResourcePool();
 
-const cities = [new ExampleCity(), new ExampleCity()];
+const cities = [exampleCity];
 let prevTick = 0;
 const timer = new Tock({
   interval: 100,
