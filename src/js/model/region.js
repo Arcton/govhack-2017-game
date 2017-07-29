@@ -1,6 +1,7 @@
 import State from 'ampersand-state';
 import Collection from 'ampersand-collection';
 import Upgrade from './upgrade';
+import Game from '../main';
 import { sumPropertyValues } from '../utils';
 
 const UpgradeCollection = Collection.extend({
@@ -31,8 +32,9 @@ export default State.extend({
   },
 
   unlock() {
+    Game.population.spent += this.cost;
     this.isActive = true;
-    return this.cost;
+    Game.save();
   },
 
   tick(elapsedTicks) {

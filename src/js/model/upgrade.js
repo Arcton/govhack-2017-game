@@ -31,6 +31,7 @@ export default State.extend({
       this.costs[name] *= 2;
     });
     this.level += 1;
+    Game.save();
   },
 
   getResourcesDelta(elapsedTicks, level = this.level) {

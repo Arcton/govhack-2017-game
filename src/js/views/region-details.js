@@ -79,8 +79,7 @@ export default View.extend({
       return;
     }
 
-    const cost = this.model.unlock();
-    Game.population.spent += cost;
+    this.model.unlock();
   },
 
   close() {

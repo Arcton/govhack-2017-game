@@ -180,6 +180,16 @@ const { resourcePool, population, happiness } = loadState((state) => {
   };
 });
 
+function save() {
+  saveState({
+    resourcePool,
+    population,
+    happiness,
+    regions,
+    timestamp: new Date().getTime(),
+  });
+}
+
 let prevTick = 0;
 const timer = new Tock({
   interval: millisPerTick,
@@ -191,13 +201,7 @@ const timer = new Tock({
     tickRegions(elapsedTicks, regions, resourcePool);
 
     if ((tick.timeout % 60) === 0) {
-      saveState({
-        resourcePool,
-        population,
-        happiness,
-        regions,
-        timestamp: new Date().getTime(),
-      });
+      save();
     }
   },
 });
@@ -209,4 +213,5 @@ export default {
   population,
   happiness,
   regions,
+  save,
 };
