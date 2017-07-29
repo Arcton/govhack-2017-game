@@ -14,7 +14,9 @@ function sumPropertyValues(dest, source) {
 function tickRegions(elapsedTicks, regions, resourcePool) {
   const resourcesDelta = {};
   Object.values(regions).forEach((region) => {
-    sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
+    if (region.isActive) {
+      sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
+    }
   });
 
   Object.entries(resourcesDelta).forEach(([key, value]) => {
