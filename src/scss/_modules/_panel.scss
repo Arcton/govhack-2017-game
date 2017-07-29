@@ -1,6 +1,6 @@
 .panel {
   width: 100%;
-  padding: $v $h;
+  padding: 0 $h $v/2 $h;
   background: $grey-dark;
   color: white;
   display: flex;
