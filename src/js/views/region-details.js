@@ -6,13 +6,15 @@ import UpgradeView from './upgrade';
 export default View.extend({
   template: `<div class="modal">
     <button class="button button--white modal__close" data-hook="close">X</button>
-    <h2 class="h2" data-hook="region-name"></h2>
-    <div class="modal__stat"><span>Population:</span> <span data-hook="population"></span></div>
-    <button class="button" data-hook="buy">Start population working</button>
-    <h3 class="h3">Production Rate</h3>
-    <div data-hook="resource-list" class="resource-list"></div>
-    <h3 class="h3">Upgrades</h3>
-    <div data-hook="upgrades-container"></div>
+    <div class="modal__inner">
+      <h2 class="h2" data-hook="region-name"></h2>
+      <div class="modal__stat"><span>Population:</span> <span data-hook="population"></span></div>
+      <button class="button" data-hook="buy">Start population working</button>
+      <h3 class="h3">Production Rate</h3>
+      <div data-hook="resource-list" class="resource-list"></div>
+      <h3 class="h3">Upgrades</h3>
+      <div data-hook="upgrades-container"></div>
+    </div>
   </div>`,
 
   events: {

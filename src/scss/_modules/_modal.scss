@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   padding: $v $h;
-  overflow: scroll;
+  overflow: hidden;
+  height: 100%;
 }
 
 .modal {
@@ -11,9 +12,14 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  padding: $v $h;
   line-height: 1;
   overflow: visible;
+
+  &__inner {
+    padding: $v $h;
+    overflow: auto;
+    height: 100%;
+  }
 
   &__stat {
     @extend %baseText;
