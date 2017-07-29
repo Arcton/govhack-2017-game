@@ -8,11 +8,16 @@ const UpgradeCollection = Collection.extend({
   model: Upgrade,
 });
 
+const DeltaState = State.extend({
+  extraProperties: 'allow',
+});
+
 export default State.extend({
   props: {
     name: 'string',
     cost: 'number',
     isActive: 'boolean',
+    lastDelta: 'state',
   },
 
   collections: {
@@ -22,6 +27,7 @@ export default State.extend({
   initialize() {
     this.cost = this.cost || 0;
     this.isActive = this.isActive || false;
+    this.lastDelta = new DeltaState();
   },
 
   unlock() {
@@ -33,9 +39,13 @@ export default State.extend({
     // handle tick for a region
     // returns an object of { resource: netAmount }
     const resourcesDelta = {};
+    const baseDelta = {};
     this.upgrades.forEach((upgrade) => {
       sumPropertyValues(resourcesDelta, upgrade.tick(elapsedTicks));
+      sumPropertyValues(baseDelta, upgrade.getResourcesDelta(1));
     });
+
+    this.lastDelta.set(baseDelta);
     return resourcesDelta;
   },
 });
