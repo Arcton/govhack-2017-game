@@ -3,5 +3,9 @@
 
   "env": {
     "browser": true
+  },
+
+  "rules": {
+    "no-param-reassign": 0
   }
 }
