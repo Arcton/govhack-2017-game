@@ -14,6 +14,8 @@ require('../index.html');
 const ticksPerSecond = 10;
 const millisPerTick = 1000 / ticksPerSecond;
 
+const startingPopulation = 50000;
+
 const regions = {
   northland: new Region({
     name: 'Northland',
@@ -159,7 +161,7 @@ const { resourcePool, population, happiness } = loadState((state) => {
   }
   return {
     resourcePool: loadedResourcePool,
-    population: new Population(Object.assign({}, { total: 10 }, savedPopulation)),
+    population: new Population(Object.assign({}, { total: startingPopulation }, savedPopulation)),
     happiness: new Progress(Object.assign({}, { value: 75 }, savedHappiness, { name: 'Happiness', total: 100 })),
   };
 });
