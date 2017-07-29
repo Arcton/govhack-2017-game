@@ -6,4 +6,9 @@ export default State.extend({
     total: 'number',
     value: 'number',
   },
+
+  initialize() {
+    this.total = this.total || 0;
+    this.value = this.value || 0;
+  },
 });

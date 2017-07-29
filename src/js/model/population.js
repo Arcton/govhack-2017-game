@@ -14,4 +14,9 @@ export default State.extend({
       },
     },
   },
+
+  initialize() {
+    this.total = this.total || 0;
+    this.spent = this.spent || 0;
+  },
 });

@@ -32,11 +32,7 @@ export default View.extend({
       prepareView(el) {
         return new HappinessView({
           el,
-          model: new ProgressModel({ // TODO: get from game object
-            name: 'Happiness',
-            total: 100,
-            value: 75,
-          }),
+          model: this.game.happiness,
         });
       },
     },
@@ -45,10 +41,7 @@ export default View.extend({
       prepareView(el) {
         return new PopulationView({
           el,
-          model: new PopulationModel({ // TODO: get from game object
-            total: 100,
-            spent: 75,
-          }),
+          model: this.game.population,
         });
       },
     },
