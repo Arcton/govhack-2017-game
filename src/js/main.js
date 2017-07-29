@@ -14,9 +14,11 @@ const millisPerTick = 1000 / ticksPerSecond;
 
 const regions = {
   northland: new Region({
+    name: 'Northland',
     cost: 169900,
   }),
   auckland: new Region({
+    name: 'Auckland',
     cost: 1593100,
   }),
   waikato: new Region({
@@ -48,15 +50,19 @@ const regions = {
     ],
   }),
   bayOfPlenty: new Region({
+    name: 'Bay of Plenty',
     cost: 290500,
   }),
   gisbourne: new Region({
+    name: 'Gisbourne',
     cost: 47600,
   }),
   hawkesBay: new Region({
+    name: 'Hawkes Bay',
     cost: 160900,
   }),
   taranaki: new Region({
+    name: 'Taranaki',
     cost: 116300,
     upgrades: [
       new Upgrade({
@@ -72,27 +78,35 @@ const regions = {
     ],
   }),
   manawatu_wanganui: new Region({
+    name: 'Manawatu / Wanganui',
     cost: 235800,
   }),
   wellington: new Region({
+    name: 'Wellington',
     cost: 501100,
   }),
   tasman_nelson: new Region({
+    name: 'Tasman / Nelson',
     cost: 100200,
   }),
   marlborough: new Region({
+    name: 'Marlborough',
     cost: 45500,
   }),
   westCoast: new Region({
+    name: 'West Coast',
     cost: 32600,
   }),
   canterbury: new Region({
+    name: 'Canterbury',
     cost: 594100,
   }),
   otago: new Region({
+    name: 'Otago',
     cost: 217200,
   }),
   southland: new Region({
+    name: 'Southland',
     cost: 97700,
   }),
 };
