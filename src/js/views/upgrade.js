@@ -71,8 +71,11 @@ export default View.extend({
     'click [data-hook=buy]': 'buy',
   },
 
-  initialize() {
-    this.updateCanAfford();
+  initialize(opts) {
+    this.region = opts.region;
+    this.listenTo(Game.resourcePool, 'change:amount', this.updateCanAfford);
+    this.listenToAndRun(this.model, 'change:costs', this.updateCanAfford);
+    this.listenTo(this, 'change:canAfford', this.render);
   },
 
   render() {
@@ -81,9 +84,9 @@ export default View.extend({
 
   updateCanAfford() {
     const costs = this.model.costs;
-
-    this.canAfford = Object.keys(costs.getAttributes({ props: true }))
-      .every(k => costs[k] <= Game.resourcePool.get(k).amount);
+    this.canAfford = this.region.isActive &&
+      Object.keys(costs.getAttributes({ props: true }))
+        .every(k => costs[k] <= Game.resourcePool.get(k).amount);
   },
 
   buy() {

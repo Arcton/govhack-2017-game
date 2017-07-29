@@ -62,6 +62,20 @@ const regions = {
   gisbourne: new Region({
     name: 'Gisbourne',
     cost: 47600,
+    upgrades: [
+      new Upgrade({
+        id: 'test',
+        name: 'Test',
+        level: 10,
+      }, {
+        deltaCallback(elapsedTicks, level) {
+          return {
+            mining: elapsedTicks * level * 4,
+            technology: elapsedTicks * level * 2,
+          };
+        },
+      }),
+    ],
   }),
   hawkesBay: new Region({
     name: 'Hawkes Bay',

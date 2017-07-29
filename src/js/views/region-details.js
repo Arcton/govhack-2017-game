@@ -66,7 +66,11 @@ export default View.extend({
       },
     });
 
-    this.renderCollection(this.model.upgrades, UpgradeView, this.el.querySelector('[data-hook=upgrades-container]'));
+    this.renderCollection(this.model.upgrades, UpgradeView, this.el.querySelector('[data-hook=upgrades-container]'), {
+      viewOptions: {
+        region: this.model,
+      },
+    });
   },
 
   buyCity() {
