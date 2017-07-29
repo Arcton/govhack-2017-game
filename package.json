@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "serve": "webpack-dev-server --config webpack.config.js"
+    "serve": "webpack-dev-server --config webpack.config.js",
+    "deploy": "git add dist && git commit -m 'Update dist' && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "ampersand-collection": "^2.0.1",
