@@ -11,4 +11,20 @@ function sumPropertyValues(dest, source) {
   });
 }
 
-export { sumPropertyValues };
+function tickRegions(elapsedTicks, regions, resourcePool) {
+  const resourcesDelta = {};
+  Object.values(regions).forEach((region) => {
+    sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
+  });
+
+  Object.entries(resourcesDelta).forEach(([key, value]) => {
+    const resource = resourcePool.get(key);
+    if (resource == null) {
+      return;
+    }
+
+    resource.amount += value;
+  });
+}
+
+export { sumPropertyValues, tickRegions };

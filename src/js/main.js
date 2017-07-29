@@ -4,8 +4,11 @@ import Upgrade from './model/upgrade';
 import Population from './model/population';
 import Progress from './model/progress-resource';
 import { ResourcePool } from './model/resource-pool';
-import { sumPropertyValues } from './utils';
+import { tickRegions } from './utils';
 import { saveState, loadState, resetState } from './loader';
+
+const ticksPerSecond = 10;
+const millisPerTick = 1000 / ticksPerSecond;
 
 const regions = {
   northland: new Region(),
@@ -69,6 +72,7 @@ const { resourcePool, population, happiness } = loadState((state) => {
   let savedResources;
   let savedHappiness;
   let savedPopulation;
+  let elapsedMs = 0;
   if (state != null) {
     savedResources = state.resourcePool;
     savedHappiness = state.happiness;
@@ -84,15 +88,30 @@ const { resourcePool, population, happiness } = loadState((state) => {
       }
       if (savedRegion.upgrades != null) {
         savedRegion.upgrades.forEach((savedUpgrade) => {
+          if (savedUpgrade.id == null) {
+            return;
+          }
           const upgrade = region.upgrades.get(savedUpgrade.id);
+          if (upgrade == null) {
+            return;
+          }
           upgrade.level = savedUpgrade.level;
           upgrade.cost = savedUpgrade.cost; // TODO: do we need this? just recalculate cost from level?
         });
       }
     });
+    if (state.timestamp != null) {
+      elapsedMs = new Date().getTime() - state.timestamp;
+    }
+  }
+  // have to create resource pool before we can run the offline ticks
+  const loadedResourcePool = new ResourcePool(savedResources);
+  if (elapsedMs > 0) {
+    const elapsedTicks = elapsedMs / millisPerTick;
+    tickRegions(elapsedTicks, regions, loadedResourcePool);
   }
   return {
-    resourcePool: new ResourcePool(savedResources),
+    resourcePool: loadedResourcePool,
     population: new Population(Object.assign({}, { total: 10 }, savedPopulation)),
     happiness: new Progress(Object.assign({}, { value: 75 }, savedHappiness, { name: 'Happiness', total: 100 })),
   };
@@ -100,27 +119,22 @@ const { resourcePool, population, happiness } = loadState((state) => {
 
 let prevTick = 0;
 const timer = new Tock({
-  interval: 100,
+  interval: millisPerTick,
   callback: (tick) => {
     const totalElapsedTime = timer.lap();
-    const elapsedTicks = Math.round((totalElapsedTime - prevTick) / 100);
+    const elapsedTicks = (totalElapsedTime - prevTick) / millisPerTick;
     prevTick = totalElapsedTime;
-    const resourcesDelta = {};
-    Object.values(regions).forEach((region) => {
-      sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
-    });
 
-    Object.entries(resourcesDelta).forEach(([key, value]) => {
-      const resource = resourcePool.get(key);
-      if (resource == null) {
-        return;
-      }
-
-      resource.amount += value;
-    });
+    tickRegions(elapsedTicks, regions, resourcePool);
 
     if ((tick.timeout % 60) === 0) {
-      saveState({ resourcePool, population, happiness, regions });
+      saveState({
+        resourcePool,
+        population,
+        happiness,
+        regions,
+        timestamp: new Date().getTime(),
+      });
     }
   },
 });
