@@ -15,7 +15,7 @@ const regions = {
         deltaCallback(elapsedTicks) {
           return {
             mining: elapsedTicks * this.level,
-            tourism: elapsedTicks * this.level * 2,
+            technology: elapsedTicks * this.level * 2,
           };
         },
       }),
@@ -25,7 +25,7 @@ const regions = {
         deltaCallback(elapsedTicks) {
           return {
             agriculture: elapsedTicks * this.level,
-            education: elapsedTicks * this.level * 3,
+            forestry: elapsedTicks * this.level * 3,
           };
         },
       }),
@@ -41,7 +41,7 @@ const regions = {
       }, {
         deltaCallback(elapsedTicks) {
           return {
-            utilities: elapsedTicks * 1.5,
+            energy: elapsedTicks * 1.5,
           };
         },
       }),
@@ -70,7 +70,6 @@ const timer = new Tock({
     Object.values(regions).forEach((region) => {
       sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
     });
-    console.log(resourcesDelta);
 
     Object.entries(resourcesDelta).forEach(([key, value]) => {
       const resource = resourcePool.get(key);

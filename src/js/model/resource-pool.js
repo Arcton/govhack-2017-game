@@ -10,8 +10,8 @@ const ResourcePool = ResourceCollection.extend({
   initialize() {
     this.add([
       {
-        id: 'utilities',
-        name: 'Utilities',
+        id: 'energy',
+        name: 'Energy',
       },
       {
         id: 'agriculture',
@@ -22,12 +22,12 @@ const ResourcePool = ResourceCollection.extend({
         name: 'Mining',
       },
       {
-        id: 'education',
-        name: 'Education',
+        id: 'forestry',
+        name: 'Forestry',
       },
       {
-        id: 'tourism',
-        name: 'Tourism',
+        id: 'technology',
+        name: 'Technology',
       },
     ]);
   },
