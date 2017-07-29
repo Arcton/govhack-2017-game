@@ -6,6 +6,7 @@ const CostState = State.extend({
 
 export default State.extend({
   props: {
+    id: 'string',
     name: 'string',
     level: 'number',
     cost: 'state',

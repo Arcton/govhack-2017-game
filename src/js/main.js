@@ -13,6 +13,7 @@ const regions = {
   waikato: new Region({
     upgrades: [
       new Upgrade({
+        id: 'wat',
         level: 1,
       }, {
         deltaCallback(elapsedTicks) {
@@ -23,6 +24,7 @@ const regions = {
         },
       }),
       new Upgrade({
+        id: 'fak',
         level: 1,
       }, {
         deltaCallback(elapsedTicks) {
@@ -40,11 +42,12 @@ const regions = {
   taranaki: new Region({
     upgrades: [
       new Upgrade({
+        id: 'rekt',
         level: 1,
       }, {
         deltaCallback(elapsedTicks) {
           return {
-            energy: elapsedTicks * 1.5,
+            energy: elapsedTicks * this.level * 1.5,
           };
         },
       }),
@@ -70,6 +73,23 @@ const { resourcePool, population, happiness } = loadState((state) => {
     savedResources = state.resourcePool;
     savedHappiness = state.happiness;
     savedPopulation = state.population;
+    // load regions/upgrade state
+    Object.entries(state.regions).forEach(([name, savedRegion]) => {
+      if (regions[name] == null) {
+        return;
+      }
+      const region = regions[name];
+      if (savedRegion.isActive != null) {
+        region.isActive = savedRegion.isActive;
+      }
+      if (savedRegion.upgrades != null) {
+        savedRegion.upgrades.forEach((savedUpgrade) => {
+          const upgrade = region.upgrades.get(savedUpgrade.id);
+          upgrade.level = savedUpgrade.level;
+          upgrade.cost = savedUpgrade.cost; // TODO: do we need this? just recalculate cost from level?
+        });
+      }
+    });
   }
   return {
     resourcePool: new ResourcePool(savedResources),

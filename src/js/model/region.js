@@ -4,6 +4,7 @@ import Upgrade from './upgrade';
 import { sumPropertyValues } from '../utils';
 
 const UpgradeCollection = Collection.extend({
+  mainIndex: 'id',
   model: Upgrade,
 });
 
