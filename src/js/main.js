@@ -159,7 +159,9 @@ const { resourcePool, population, happiness } = loadState((state) => {
             return;
           }
           upgrade.level = savedUpgrade.level;
-          upgrade.cost = savedUpgrade.cost; // TODO: do we need this? just recalculate cost from level?
+          Object.entries(savedUpgrade.costs).forEach(([resource, amount]) => {
+            upgrade.costs[resource] = amount;
+          });
         });
       }
     });
