@@ -8,8 +8,10 @@ export default View.extend({
     return `
     <div class="map-container">
       <div class="modal-container"></div>
-      <div class="map">
-        ${mapSvg}
+      <div class="map-container__inner">
+        <div class="map">
+          ${mapSvg}
+        </div>
       </div>
     <div>`;
   },
