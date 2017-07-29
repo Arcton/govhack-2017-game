@@ -1,0 +1,33 @@
+.resources-panel {
+  background: #594512;
+  border: 3px solid #a58438;
+  border-radius: 10px;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+.resources-panel > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resource {
+  color: white;
+  text-shadow: 0 3px 0 black, 0 -1px 0 black, 1px 0 0 black, -1px 0 0 black;
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  width: 110px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.resource__name {
+  width: 26px;
+  height: 21px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
