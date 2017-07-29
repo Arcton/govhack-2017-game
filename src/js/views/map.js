@@ -6,7 +6,7 @@ import RegionDetailsView from './region-details';
 export default View.extend({
   template() {
     return `
-    <div>
+    <div class="map-container">
       <div class="modal-container"></div>
       <div class="map">
         ${mapSvg}

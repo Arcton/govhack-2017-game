@@ -1,0 +1,27 @@
+.button {
+  @include block($teal-mid, $teal-dark);
+  padding: 8px 10px 5px;
+  text-transform: uppercase;
+  color: $teal-dark;
+  text-shadow: 0 2px 0 rgba(white, 0.3);
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  margin-bottom: $v + 5px;
+  outline: none;
+
+  &--disabled,
+  &:disabled {
+    @include block($grey-mid, $grey-light);
+    color: darken($grey-mid, 10%);
+  }
+
+  &--white {
+    @include block(white, $grey-light);
+    color: $grey-dark;
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translate(0, 4px);
+  }
+}

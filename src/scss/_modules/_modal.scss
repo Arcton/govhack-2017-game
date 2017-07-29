@@ -1,0 +1,27 @@
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: $v $h;
+}
+
+.modal {
+  @include block($grey-light, $grey-mid);
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: $v $h;
+  line-height: 1;
+  overflow: visible;
+
+  &__stat {
+    @extend %baseText;
+    margin-bottom: $v;
+  }
+
+  &__close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+  }
+}

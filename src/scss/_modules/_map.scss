@@ -1,7 +1,14 @@
+.map-container {
+  position: relative;
+  height: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
 .map {
   width: 100%;
   height: 100%;
-  flex-grow: 1;
+  padding: $h;
 
   overflow: auto;
 

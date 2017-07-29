@@ -1,17 +1,18 @@
 .resources-panel {
   @include block(#594512, #a58438);
   padding: $v/2 $h/2;
+}
 
-  & > div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  }
+.resource-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .resource {
-  @extend .label;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
   font-size: 0.8rem;
   width: 110px;
   display: flex;
@@ -22,5 +23,15 @@
     width: 26px;
     height: 21px;
     margin-right: 10px;
+  }
+
+  &__delta {
+    &--positive {
+      color: $green-light;
+    }
+
+    &--negative {
+      color: $red-light;
+    }
   }
 }

@@ -2,8 +2,7 @@ import View from 'ampersand-view';
 import ResourceView from './resource';
 
 export default View.extend({
-  template: `<div class="resources-panel">
-    <div data-hook="item-container"></div>
+  template: `<div class="resources-panel resource-list" data-hook="item-container">
   </div>`,
 
   render() {

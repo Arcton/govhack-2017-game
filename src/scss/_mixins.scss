@@ -5,3 +5,11 @@
   overflow: hidden;
   box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
 }
+
+@mixin depthText($fg, $outline, $depth: 3) {
+  @extend %baseText;
+  color: $fg;
+  text-transform: uppercase;
+  color: $fg;
+  text-shadow: 0 $depth * 1px 0 $outline, 0 -1px 0 $outline, 1px 0 0 $outline, -1px 0 0 $outline;
+}
