@@ -32,8 +32,8 @@ export default View.extend({
 
     this.resourceDelta = this.deltas[id] || 0;
 
-    this.deltas.on(`change:${id}`, (model, value) => {
-      this.resourceDelta = value || 0;
+    this.listenToAndRun(this.deltas, `change:${id}`, () => {
+      this.resourceDelta = this.deltas[id] || 0;
     });
   },
 

@@ -9,12 +9,18 @@ export default State.extend({
     id: 'string',
     name: 'string',
     level: 'number',
-    cost: 'state',
+    costs: 'state',
   },
 
   initialize(attributes, options) {
     this.level = this.level || 0;
     this.deltaCallback = options.deltaCallback;
+
+    // TODO: remove
+    this.costs = new CostState({
+      technology: 1000,
+      mining: 200,
+    });
   },
 
   improve() {
@@ -22,10 +28,10 @@ export default State.extend({
     return this.cost;
   },
 
-  getResourcesDelta(elapsedTicks) {
+  getResourcesDelta(elapsedTicks, level = this.level) {
     // returns an object of { resource: netAmount }
     // must have NO side affects
-    return this.deltaCallback(elapsedTicks);
+    return this.deltaCallback(elapsedTicks, level);
   },
 
   tick(elapsedTicks) {

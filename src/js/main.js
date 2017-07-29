@@ -26,24 +26,26 @@ const regions = {
     cost: 444400,
     upgrades: [
       new Upgrade({
-        id: 'wat',
+        id: 'foo',
+        name: 'Foo',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks) {
+        deltaCallback(elapsedTicks, level) {
           return {
-            mining: elapsedTicks * this.level,
-            technology: elapsedTicks * this.level * 2,
+            mining: elapsedTicks * level,
+            technology: elapsedTicks * level * 2,
           };
         },
       }),
       new Upgrade({
-        id: 'fak',
+        id: 'bar',
+        name: 'Bar',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks) {
+        deltaCallback(elapsedTicks, level) {
           return {
-            agriculture: elapsedTicks * this.level,
-            forestry: elapsedTicks * this.level * 3,
+            agriculture: elapsedTicks * level,
+            forestry: elapsedTicks * level * 3,
           };
         },
       }),
@@ -69,9 +71,9 @@ const regions = {
         id: 'rekt',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks) {
+        deltaCallback(elapsedTicks, level) {
           return {
-            energy: elapsedTicks * this.level * 1.5,
+            energy: elapsedTicks * level * 1.5,
           };
         },
       }),

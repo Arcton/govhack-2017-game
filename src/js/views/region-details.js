@@ -1,6 +1,7 @@
 import View from 'ampersand-view';
 import Game from '../main';
 import ResourceDeltaView from './resource-delta';
+import UpgradeView from './upgrade';
 
 export default View.extend({
   template: `<div class="modal">
@@ -10,6 +11,8 @@ export default View.extend({
     <button class="button" data-hook="buy">Start population working</button>
     <h3 class="h3">Production Rate</h3>
     <div data-hook="resource-list" class="resource-list"></div>
+    <h3 class="h3">Upgrades</h3>
+    <div data-hook="upgrades-container"></div>
   </div>`,
 
   events: {
@@ -60,6 +63,8 @@ export default View.extend({
         deltas: this.model.lastDelta,
       },
     });
+
+    this.renderCollection(this.model.upgrades, UpgradeView, this.el.querySelector('[data-hook=upgrades-container]'));
   },
 
   buyCity() {
