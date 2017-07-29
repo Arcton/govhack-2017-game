@@ -1,5 +1,5 @@
 import Tock from 'tocktimer';
-import City from './model/city';
+import Region from './model/region';
 import Upgrade from './model/upgrade';
 import { ResourcePool } from './model/resource-pool';
 import { sumPropertyValues } from './utils';
@@ -14,13 +14,13 @@ const exampleUpgrade = new Upgrade({}, {
 });
 exampleUpgrade.improve();
 
-const exampleCity = new City({
+const exampleRegion = new Region({
   upgrades: [exampleUpgrade],
 });
 
 const resourcePool = new ResourcePool();
 
-const cities = [exampleCity];
+const regions = [exampleRegion];
 let prevTick = 0;
 const timer = new Tock({
   interval: 100,
@@ -29,8 +29,8 @@ const timer = new Tock({
     const elapsedTicks = Math.round((totalElapsedTime - prevTick) / 100);
     prevTick = totalElapsedTime;
     const resourcesDelta = {};
-    cities.forEach((city) => {
-      sumPropertyValues(resourcesDelta, city.tick(elapsedTicks));
+    regions.forEach((region) => {
+      sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
     });
     console.log(resourcesDelta);
 
@@ -49,5 +49,5 @@ timer.start();
 
 export default {
   resourcePool,
-  cities,
+  regions,
 };

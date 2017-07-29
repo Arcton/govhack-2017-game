@@ -29,7 +29,7 @@ export default State.extend({
   },
 
   tick(elapsedTicks) {
-    // handle tick for a city
+    // handle tick for a region
     // returns an object of { resource: netAmount }
     const resourcesDelta = {};
     this.upgrades.forEach((upgrade) => {
