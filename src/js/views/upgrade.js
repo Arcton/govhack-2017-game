@@ -8,7 +8,11 @@ export default View.extend({
     let costsHtml = '';
     Object.keys(costs.getAttributes({ props: true })).forEach((k) => {
       costsHtml += `<div class="resource">
-        <span class="resource__name"></span>
+        <span class="resource__name">
+          <svg class="icon icon--dark">
+            <use xlink:href="#${k}"></use>
+          </svg>
+        </span>
         <span class="resource__delta">${costs[k]}</span>
       </div>`;
     });
@@ -21,7 +25,11 @@ export default View.extend({
       const current = currentGains[k] || 0;
 
       gainsHtml += `<div class="resource">
-        <span class="resource__name"></span>
+        <span class="resource__name">
+          <svg class="icon icon--dark">
+            <use xlink:href="#${k}"></use>
+          </svg>
+        </span>
         <span class="resource__delta">${gains[k] - current}</span>
       </div>`;
     });

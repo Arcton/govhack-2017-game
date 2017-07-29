@@ -1,10 +1,17 @@
 import View from 'ampersand-view';
 
 export default View.extend({
-  template: `<div class="resource" data-hook="container">
-    <span class="resource__name" data-hook="name"></span>
-    <span class="resource__delta" data-hook="delta"></span>
-  </div>`,
+  template() {
+    const id = this.model.id;
+    return `<div class="resource" data-hook="container">
+      <span class="resource__name" data-hook="name">
+        <svg class="icon icon--dark">
+          <use xlink:href="#${id}"></use>
+        </svg>
+      </span>
+      <span class="resource__delta" data-hook="delta"></span>
+    </div>`;
+  },
 
   props: {
     resourceDelta: 'number',
