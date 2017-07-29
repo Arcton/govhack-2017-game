@@ -9,7 +9,9 @@ export default View.extend({
     displayAmount: {
       deps: ['model.amount'],
       fn() {
-        return Math.round(this.model.amount);
+        const amount = Math.round(this.model.amount);
+
+        return Number.prototype.toLocaleString ? amount.toLocaleString() : amount;
       },
     },
   },

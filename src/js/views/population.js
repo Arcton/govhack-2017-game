@@ -13,9 +13,24 @@ export default View.extend({
     </div>
   </div>`,
 
+  derived: {
+    formattedTotal: {
+      deps: ['model.total'],
+      fn() {
+        return this.model.total.toLocaleString();
+      },
+    },
+    formattedAvailable: {
+      deps: ['model.available'],
+      fn() {
+        return this.model.available.toLocaleString();
+      },
+    },
+  },
+
   bindings: {
-    'model.total': '[data-hook=population]',
-    'model.available': '[data-hook=unassigned]',
+    formattedTotal: '[data-hook=population]',
+    formattedAvailable: '[data-hook=unassigned]',
   },
 
   render() {

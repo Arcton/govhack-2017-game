@@ -24,11 +24,18 @@ export default View.extend({
         return this.game.population.available - this.model.cost >= 0;
       },
     },
+
+    formattedPopulation: {
+      deps: ['model.cost'],
+      fn() {
+        return this.model.cost.toLocaleString();
+      },
+    },
   },
 
   bindings: {
     'model.name': '[data-hook=region-name]',
-    'model.cost': '[data-hook=population]',
+    formattedPopulation: '[data-hook=population]',
     'model.isActive': {
       type: 'toggle',
       hook: 'buy',
