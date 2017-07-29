@@ -2,8 +2,7 @@ import View from 'ampersand-view';
 import ResourcesPanel from './resources-panel';
 import HappinessView from './happiness';
 import PopulationView from './population';
-import ProgressModel from '../model/progress-resource';
-import PopulationModel from '../model/population';
+import MapView from './map';
 
 export default View.extend({
   template: `<div class="game-container">
@@ -12,6 +11,7 @@ export default View.extend({
       <div data-hook=population-slot></div>
       <div data-hook=happiness-slot></div>
     </div>
+    <div data-hook=map-slot></div>
   </div>`,
   initialize(game) {
     this.game = game;
@@ -42,6 +42,15 @@ export default View.extend({
         return new PopulationView({
           el,
           model: this.game.population,
+        });
+      },
+    },
+    map: {
+      selector: '[data-hook=map-slot]',
+      prepareView(el) {
+        return new MapView({
+          el,
+          regions: this.game.regions,
         });
       },
     },
