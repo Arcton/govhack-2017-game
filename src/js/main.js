@@ -5,7 +5,7 @@ import Population from './model/population';
 import Progress from './model/progress-resource';
 import { ResourcePool } from './model/resource-pool';
 import { tickRegions } from './utils';
-import { saveState, loadState, resetState } from './loader';
+import { saveState, loadState } from './loader';
 
 require('../index.html');
 
@@ -16,6 +16,7 @@ const regions = {
   northland: new Region(),
   auckland: new Region(),
   waikato: new Region({
+    name: 'Waikato',
     upgrades: [
       new Upgrade({
         id: 'wat',
