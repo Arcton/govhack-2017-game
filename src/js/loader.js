@@ -16,6 +16,7 @@ function loadState(callback) {
 
 function resetState() {
   window.localStorage[key] = null;
+  document.location = document.location;
 }
 
 export { saveState, loadState, resetState };

@@ -5,7 +5,9 @@ import Population from './model/population';
 import Progress from './model/progress-resource';
 import { ResourcePool } from './model/resource-pool';
 import { tickRegions } from './utils';
-import { saveState, loadState } from './loader';
+import { saveState, loadState, resetState } from './loader';
+
+window.resetState = resetState;
 
 require('../index.html');
 
@@ -112,8 +114,6 @@ const regions = {
     cost: 97700,
   }),
 };
-
-// resetState();
 
 const { resourcePool, population, happiness } = loadState((state) => {
   let savedResources;
