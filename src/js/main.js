@@ -4,23 +4,61 @@ import Upgrade from './model/upgrade';
 import { ResourcePool } from './model/resource-pool';
 import { sumPropertyValues } from './utils';
 
-const exampleUpgrade = new Upgrade({}, {
-  deltaCallback(elapsedTicks) {
-    return {
-      mining: elapsedTicks * this.level,
-      tourism: elapsedTicks * this.level * 2,
-    };
-  },
-});
-exampleUpgrade.improve();
-
-const exampleRegion = new Region({
-  upgrades: [exampleUpgrade],
-});
+const regions = {
+  northland: new Region(),
+  auckland: new Region(),
+  waikato: new Region({
+    upgrades: [
+      new Upgrade({
+        level: 1,
+      }, {
+        deltaCallback(elapsedTicks) {
+          return {
+            mining: elapsedTicks * this.level,
+            tourism: elapsedTicks * this.level * 2,
+          };
+        },
+      }),
+      new Upgrade({
+        level: 1,
+      }, {
+        deltaCallback(elapsedTicks) {
+          return {
+            agriculture: elapsedTicks * this.level,
+            education: elapsedTicks * this.level * 3,
+          };
+        },
+      }),
+    ],
+  }),
+  bayOfPlenty: new Region(),
+  gisbourne: new Region(),
+  hawkesBay: new Region(),
+  taranaki: new Region({
+    upgrades: [
+      new Upgrade({
+        level: 1,
+      }, {
+        deltaCallback(elapsedTicks) {
+          return {
+            utilities: elapsedTicks * 1.5,
+          };
+        },
+      }),
+    ],
+  }),
+  manawatu_wanganui: new Region(),
+  wellington: new Region(),
+  tasman_nelson: new Region(),
+  marlborough: new Region(),
+  westCoast: new Region(),
+  canterbury: new Region(),
+  otago: new Region(),
+  southland: new Region(),
+};
 
 const resourcePool = new ResourcePool();
 
-const regions = [exampleRegion];
 let prevTick = 0;
 const timer = new Tock({
   interval: 100,
@@ -29,7 +67,7 @@ const timer = new Tock({
     const elapsedTicks = Math.round((totalElapsedTime - prevTick) / 100);
     prevTick = totalElapsedTime;
     const resourcesDelta = {};
-    regions.forEach((region) => {
+    Object.values(regions).forEach((region) => {
       sumPropertyValues(resourcesDelta, region.tick(elapsedTicks));
     });
     console.log(resourcesDelta);
