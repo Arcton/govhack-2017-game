@@ -25,13 +25,10 @@ export default State.extend({
   },
 
   improve() {
-    Object.entries(this.costs).forEach(([name, amount]) => {
-      this.costs[name] *= 2;
+    Object.entries(this.costs.getAttributes({ props: true })).forEach(([name, amount]) => {
       const resource = Game.resourcePool.get(name);
-      if (resource == null) {
-        return;
-      }
       resource.amount -= amount;
+      this.costs[name] *= 2;
     });
     this.level += 1;
   },
