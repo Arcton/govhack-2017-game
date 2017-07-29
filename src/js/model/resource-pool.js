@@ -7,7 +7,7 @@ const ResourceCollection = Collection.extend({
 });
 
 const ResourcePool = ResourceCollection.extend({
-  initialize() {
+  initialize(attributes) {
     this.add([
       {
         id: 'energy',
@@ -30,6 +30,20 @@ const ResourcePool = ResourceCollection.extend({
         name: 'Technology',
       },
     ]);
+    if (attributes != null) {
+      attributes.forEach((attribute) => {
+        const instAttribute = this.get(attribute.id);
+        if (instAttribute == null) {
+          return;
+        }
+        if (attribute.isActive != null) {
+          instAttribute.isActive = attribute.isActive;
+        }
+        if (attribute.amount != null) {
+          instAttribute.amount = attribute.amount;
+        }
+      });
+    }
   },
 });
 

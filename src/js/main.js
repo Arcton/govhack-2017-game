@@ -3,6 +3,7 @@ import Region from './model/region';
 import Upgrade from './model/upgrade';
 import { ResourcePool } from './model/resource-pool';
 import { sumPropertyValues } from './utils';
+import { saveState, loadState, resetState } from './loader';
 
 const regions = {
   northland: new Region(),
@@ -57,7 +58,14 @@ const regions = {
   southland: new Region(),
 };
 
-const resourcePool = new ResourcePool();
+// resetState();
+
+const { resourcePool } = loadState((state) => {
+  const resources = state != null ? state.resourcePool : null;
+  return {
+    resourcePool: new ResourcePool(resources),
+  };
+});
 
 let prevTick = 0;
 const timer = new Tock({
@@ -79,6 +87,10 @@ const timer = new Tock({
 
       resource.amount += value;
     });
+
+    // save state
+    // TODO: don't do this every tick
+    saveState({ resourcePool, regions });
   },
 });
 

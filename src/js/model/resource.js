@@ -9,9 +9,7 @@ export default State.extend({
   },
 
   initialize() {
-    this.set({
-      amount: 0,
-      isActive: false,
-    });
+    this.amount = this.amount || 0;
+    this.isActive = this.isActive || false;
   },
 });
