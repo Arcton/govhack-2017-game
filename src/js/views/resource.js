@@ -5,8 +5,17 @@ export default View.extend({
     <span class="resource__name" data-hook="name"></span><span class="resource__amount" data-hook="amount"></span>
   </div>`,
 
+  derived: {
+    displayAmount: {
+      deps: ['model.amount'],
+      fn() {
+        return Math.round(this.model.amount);
+      },
+    },
+  },
+
   bindings: {
-    'model.amount': '[data-hook=amount]',
+    displayAmount: '[data-hook=amount]',
   },
 
   render({ containerEl }) {
