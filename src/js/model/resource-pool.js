@@ -8,12 +8,24 @@ export default Collection.extend({
   initialize() {
     this.add([
       {
-        id: 'power',
-        name: 'Power',
+        id: 'utilities',
+        name: 'Utilities',
       },
       {
-        id: 'livestock',
-        name: 'Livestock',
+        id: 'agriculture',
+        name: 'Agriculture',
+      },
+      {
+        id: 'mining',
+        name: 'Mining',
+      },
+      {
+        id: 'education',
+        name: 'Education',
+      },
+      {
+        id: 'tourism',
+        name: 'Tourism',
       },
     ]);
   },

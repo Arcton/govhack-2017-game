@@ -15,7 +15,7 @@ export default View.extend({
       selector: '[data-hook=resources-slot]',
       prepareView(el) {
         return new ResourcesPanel({
-          collection: new ResourcePool(), // TODO: get resource pool from the main Game object
+          collection: this.game.resourcePool,
           el,
         });
       },
