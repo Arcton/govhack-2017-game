@@ -1,10 +1,12 @@
 import Collection from 'ampersand-collection';
 import Resource from './resource';
 
-export default Collection.extend({
+const ResourceCollection = Collection.extend({
   model: Resource,
   mainIndex: 'id',
+});
 
+const ResourcePool = ResourceCollection.extend({
   initialize() {
     this.add([
       {
@@ -30,3 +32,5 @@ export default Collection.extend({
     ]);
   },
 });
+
+export { ResourceCollection, ResourcePool };

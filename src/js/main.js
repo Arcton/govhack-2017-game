@@ -1,7 +1,7 @@
 import Tock from 'tocktimer';
 import City from './model/city';
 import Upgrade from './model/upgrade';
-import ResourcePool from './model/resource-pool';
+import { ResourcePool } from './model/resource-pool';
 import { sumPropertyValues } from './utils';
 
 const exampleUpgrade = new Upgrade({}, {

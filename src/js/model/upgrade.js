@@ -1,9 +1,14 @@
 import State from 'ampersand-state';
 
+const CostState = State.extend({
+  extraProperties: 'allow',
+});
+
 export default State.extend({
   props: {
     name: 'string',
     level: 'number',
+    cost: CostState,
   },
 
   initialize(attributes, options) {
@@ -12,8 +17,8 @@ export default State.extend({
   },
 
   improve() {
-    // TODO: how to define/get the cost?
     this.level += 1;
+    return this.cost;
   },
 
   getResourcesDelta(elapsedTicks) {

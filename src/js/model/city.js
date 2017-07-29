@@ -10,10 +10,22 @@ const UpgradeCollection = Collection.extend({
 export default State.extend({
   props: {
     name: 'string',
+    cost: 'number',
+    isActive: 'boolean',
   },
 
   collections: {
     upgrades: UpgradeCollection,
+  },
+
+  initialize() {
+    this.cost = this.cost || 0;
+    this.isActive = this.isActive || false;
+  },
+
+  unlock() {
+    this.isActive = true;
+    return this.cost;
   },
 
   tick(elapsedTicks) {
