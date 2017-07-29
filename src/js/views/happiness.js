@@ -2,7 +2,7 @@ import View from 'ampersand-view';
 
 export default View.extend({
   template: `<div class="progress-resource" data-hook="container">
-    <span class="label" data-hook="label"></span>:
+    <span class="label" data-hook="label"></span>
     <div class="progress">
       <div class="progress__inner" data-hook="progress"></div>
     </div>

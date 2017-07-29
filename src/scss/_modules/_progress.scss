@@ -1,0 +1,21 @@
+.progress {
+  @include block($grey-dark, $grey-mid);
+  display: inline-block;
+  height: 20px;
+  width: 100px;
+  flex-grow: 1;
+
+  &__inner {
+    height: 100%;
+    background: $yellow;
+  }
+}
+
+.progress-resource {
+  display: flex;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: $h;
+  }
+}

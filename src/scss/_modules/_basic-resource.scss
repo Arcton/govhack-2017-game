@@ -1,0 +1,10 @@
+.basic-resource {
+  display: flex;
+  justify-content: space-between;
+
+  &__value {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -8,7 +8,7 @@ export default State.extend({
   props: {
     name: 'string',
     level: 'number',
-    cost: CostState,
+    cost: 'state',
   },
 
   initialize(attributes, options) {

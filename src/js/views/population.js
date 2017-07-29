@@ -2,10 +2,15 @@ import View from 'ampersand-view';
 
 export default View.extend({
   template: `<div class="basic-resource" data-hook="container">
-    <span class="label">Population</span>:
-    <span class="quantity" data-hook="population"></span>
-    <span class="label">Unassigned</span>:
-    <span class="quantity" data-hook="unassigned"></span>
+    <div class="basic-resource__value">
+      <span class="label label--light">Comrades</span>
+      <span class="label" data-hook="population"></span>
+    </div>
+
+    <div class="basic-resource__value">
+      <span class="label label--light">Unassigned</span>
+      <span class="label" data-hook="unassigned"></span>
+    </div>
   </div>`,
 
   bindings: {

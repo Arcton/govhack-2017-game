@@ -1,4 +1,12 @@
+@import '../../node_modules/normalize.css/normalize.css';
+@import './_variables';
+@import './_mixins';
+@import './_modules/index';
+
 body {
-  background: black;
-  color: white;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
 }

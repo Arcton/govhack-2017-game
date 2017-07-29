@@ -1,0 +1,12 @@
+.panel {
+  width: 100%;
+  padding: $v $h;
+  background: $grey-dark;
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    margin: $v/2 0;
+  }
+}
