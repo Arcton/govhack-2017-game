@@ -32,6 +32,8 @@
     "ampersand-collection": "^2.0.1",
     "ampersand-state": "^5.0.2",
     "ampersand-view": "^10.0.2",
+    "html-loader": "^0.5.0",
+    "html-webpack-plugin": "^2.29.0",
     "normalize.css": "^7.0.0",
     "tocktimer": "^1.0.12"
   }

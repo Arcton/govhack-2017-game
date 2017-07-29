@@ -7,6 +7,8 @@ import { ResourcePool } from './model/resource-pool';
 import { tickRegions } from './utils';
 import { saveState, loadState, resetState } from './loader';
 
+require('../index.html');
+
 const ticksPerSecond = 10;
 const millisPerTick = 1000 / ticksPerSecond;
 
