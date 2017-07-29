@@ -1,0 +1,40 @@
+.upgrade {
+  width: 100%;
+  background: white;
+  border-radius: $radius;
+  margin-bottom: $v;
+  padding: $v $h;
+
+  &__title {
+    @extend %baseText;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+
+  &__subtitle {
+    @extend %baseText;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $v/2;
+  }
+
+  &__button-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  &__button {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}

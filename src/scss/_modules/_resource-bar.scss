@@ -8,6 +8,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: $v/2;
+  }
 }
 
 .resource {

@@ -28,27 +28,29 @@ export default View.extend({
 
     return `
     <div class="upgrade" data-hook="container">
-     <div class="upgrade__content">
-       <span class="upgrade__title" data-hook="name"></span>
+      <span class="upgrade__title" data-hook="name"></span>
+      <div class="upgrade__content">
 
-       <div class="upgrade__cost-section">
-         <span class="upgrade_subtitle">Pay:</span>
-         <div class="resource-list resource-list--simple">
-          ${costsHtml}
-         </div>
-       </div>
+        <div class="upgrade__cost-section">
+          <span class="upgrade__subtitle">Pay:</span>
+          <div class="resource-list resource-list--simple">
+            ${costsHtml}
+          </div>
+        </div>
 
-       <div class="upgrade__cost-section">
-         <span class="upgrade_subtitle">Get:</span>
-         <div class="resource-list resource-list--simple">
-          ${gainsHtml}
+        <div class="upgrade__cost-section">
+          <span class="upgrade__subtitle">Get:</span>
+          <div class="resource-list resource-list--simple">
+            ${gainsHtml}
+          </div>
          </div>
-       </div>
-     </div>
-     <button class="button" data-hook=buy>
-       Purchase
-     </button>
-   </div>`;
+      </div>
+      <div class="upgrade__button-container">
+        <button class="button upgrade__button" data-hook=buy>
+          Purchase
+        </button>
+      </div>
+    </div>`;
   },
 
   props: {
