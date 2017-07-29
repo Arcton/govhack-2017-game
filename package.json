@@ -20,6 +20,8 @@
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "svg-sprite-loader": "^3.0.8",
+    "svgo-loader": "^1.2.1",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"
   },
@@ -31,9 +33,9 @@
     "ampersand-collection": "^2.0.1",
     "ampersand-state": "^5.0.2",
     "ampersand-view": "^10.0.2",
+    "ampersand-view-switcher": "^2.1.0",
     "html-loader": "^0.5.0",
     "html-webpack-plugin": "^2.29.0",
-    "ampersand-view-switcher": "^2.1.0",
     "normalize.css": "^7.0.0",
     "tocktimer": "^1.0.12"
   }

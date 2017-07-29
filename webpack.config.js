@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src/js'),
@@ -40,6 +41,7 @@ module.exports = {
 
       {
         test: /\.svg$/,
+        exclude: [/assets\/icons/],
         use: 'raw-loader',
       },
 
@@ -47,11 +49,25 @@ module.exports = {
         test: /\.html$/,
         use: 'html-loader',
       },
+      {
+        test: /\.svg$/,
+        include: path.resolve('./src/assets/icons'),
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              spriteFilename: 'icons.svg',
+            },
+          },
+          'svgo-loader',
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: '../index.html',
     }),
+    new SpriteLoaderPlugin(),
   ],
 };

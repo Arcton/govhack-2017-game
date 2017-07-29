@@ -80,9 +80,8 @@ export default View.extend({
   updateCanAfford() {
     const costs = this.model.costs;
 
-    this.canAfford = Object.keys(costs.getAttributes({ props: true })).every((k) => {
-      return costs[k] <= Game.resourcePool.get(k).amount;
-    });
+    this.canAfford = Object.keys(costs.getAttributes({ props: true }))
+      .every(k => costs[k] <= Game.resourcePool.get(k).amount);
   },
 
   buy() {
