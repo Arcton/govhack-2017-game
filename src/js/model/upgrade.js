@@ -5,23 +5,39 @@ const CostState = State.extend({
   extraProperties: 'allow',
 });
 
+const ProductionState = State.extend({
+  extraProperties: 'allow',
+});
+
 export default State.extend({
   props: {
     id: 'string',
     name: 'string',
     level: 'number',
     costs: 'state',
+    production: 'state',
   },
 
   initialize(attributes, options) {
+    this.id = this.id || this.name.toLowerCase();
     this.level = this.level || 0;
-    this.deltaCallback = options.deltaCallback;
+    this.deltaCallback = options.deltaCallback || this.defaultDeltaCallback;
+    if (options.costs == null || Object.keys(options.costs).length === 0) {
+      options.costs = {};
+      this.production = this.production || new ProductionState(options.production);
+      Object.keys(this.production.getAttributes({ props: true })).forEach((id) => {
+        options.costs[id] = 1000;
+      });
+    }
+    this.costs = this.costs || new CostState(options.costs);
+  },
 
-    // TODO: remove
-    this.costs = new CostState({
-      technology: 1000,
-      mining: 200,
+  defaultDeltaCallback(elapsedTicks, level) {
+    const resourcesDelta = {};
+    Object.entries(this.production.getAttributes({ props: true })).forEach(([name, amount]) => {
+      resourcesDelta[name] = amount * elapsedTicks * level;
     });
+    return resourcesDelta;
   },
 
   improve() {

@@ -21,37 +21,97 @@ const regions = {
   northland: new Region({
     name: 'Northland',
     cost: 169900,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Forestry',
+        level: 1,
+      }, {
+        production: {
+          forestry: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 3,
+      }, {
+        production: {
+          agriculture: 20,
+        },
+      }),
+    ],
   }),
   auckland: new Region({
     name: 'Auckland',
     cost: 1593100,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 5,
+      }, {
+        production: {
+          technology: 30,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 1,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   waikato: new Region({
     name: 'Waikato',
     cost: 444400,
     upgrades: [
       new Upgrade({
-        id: 'foo',
-        name: 'Foo',
+        name: 'Mining',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks, level) {
-          return {
-            mining: elapsedTicks * level,
-            technology: elapsedTicks * level * 2,
-          };
+        production: {
+          mining: 10,
         },
       }),
       new Upgrade({
-        id: 'bar',
-        name: 'Bar',
+        name: 'Technology',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks, level) {
-          return {
-            agriculture: elapsedTicks * level,
-            forestry: elapsedTicks * level * 3,
-          };
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 3,
+      }, {
+        production: {
+          energy: 30,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 2,
+      }, {
+        production: {
+          agriculture: 30,
         },
       }),
     ],
@@ -59,21 +119,59 @@ const regions = {
   bayOfPlenty: new Region({
     name: 'Bay of Plenty',
     cost: 290500,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 1,
+      }, {
+        production: {
+          energy: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 2,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   gisbourne: new Region({
     name: 'Gisbourne',
     cost: 47600,
     upgrades: [
       new Upgrade({
-        id: 'test',
-        name: 'Test',
-        level: 10,
+        name: 'Technology',
+        level: 1,
       }, {
-        deltaCallback(elapsedTicks, level) {
-          return {
-            mining: elapsedTicks * level * 4,
-            technology: elapsedTicks * level * 2,
-          };
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Forestry',
+        level: 1,
+      }, {
+        production: {
+          forestry: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 10,
         },
       }),
     ],
@@ -81,19 +179,59 @@ const regions = {
   hawkesBay: new Region({
     name: 'Hawkes Bay',
     cost: 160900,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 1,
+      }, {
+        production: {
+          energy: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 2,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   taranaki: new Region({
     name: 'Taranaki',
     cost: 116300,
     upgrades: [
       new Upgrade({
-        id: 'rekt',
+        name: 'Technology',
         level: 1,
       }, {
-        deltaCallback(elapsedTicks, level) {
-          return {
-            energy: elapsedTicks * level * 1.5,
-          };
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 3,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 2,
+      }, {
+        production: {
+          agriculture: 10,
         },
       }),
     ],
@@ -101,34 +239,234 @@ const regions = {
   manawatu_wanganui: new Region({
     name: 'Manawatu / Wanganui',
     cost: 235800,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 1,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 20,
+        },
+      }),
+    ],
   }),
   wellington: new Region({
     name: 'Wellington',
     cost: 501100,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 4,
+      }, {
+        production: {
+          technology: 30,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 1,
+      }, {
+        production: {
+          energy: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   tasman_nelson: new Region({
     name: 'Tasman / Nelson',
     cost: 100200,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Forestry',
+        level: 1,
+      }, {
+        production: {
+          forestry: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   marlborough: new Region({
     name: 'Marlborough',
     cost: 45500,
+    upgrades: [
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 20,
+        },
+      }),
+    ],
   }),
   westCoast: new Region({
     name: 'West Coast',
     cost: 32600,
+    upgrades: [
+      new Upgrade({
+        name: 'Mining',
+        level: 3,
+      }, {
+        production: {
+          mining: 30,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 1,
+      }, {
+        production: {
+          agriculture: 10,
+        },
+      }),
+    ],
   }),
   canterbury: new Region({
     name: 'Canterbury',
     cost: 594100,
+    upgrades: [
+      new Upgrade({
+        name: 'Technology',
+        level: 3,
+      }, {
+        production: {
+          technology: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 3,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 3,
+      }, {
+        production: {
+          agriculture: 30,
+        },
+      }),
+    ],
   }),
   otago: new Region({
     name: 'Otago',
     cost: 217200,
+    upgrades: [
+      new Upgrade({
+        name: 'Mining',
+        level: 4,
+      }, {
+        production: {
+          mining: 30,
+        },
+      }),
+      new Upgrade({
+        name: 'Technology',
+        level: 3,
+      }, {
+        production: {
+          technology: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 2,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 2,
+      }, {
+        production: {
+          agriculture: 20,
+        },
+      }),
+    ],
   }),
   southland: new Region({
     name: 'Southland',
     cost: 97700,
+    upgrades: [
+      new Upgrade({
+        name: 'Mining',
+        level: 2,
+      }, {
+        production: {
+          mining: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Technology',
+        level: 1,
+      }, {
+        production: {
+          technology: 10,
+        },
+      }),
+      new Upgrade({
+        name: 'Energy',
+        level: 2,
+      }, {
+        production: {
+          energy: 20,
+        },
+      }),
+      new Upgrade({
+        name: 'Agriculture',
+        level: 3,
+      }, {
+        production: {
+          agriculture: 20,
+        },
+      }),
+    ],
   }),
 };
 
