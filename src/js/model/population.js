@@ -10,7 +10,7 @@ export default State.extend({
     available: {
       deps: ['total', 'spent'],
       fn() {
-        return this.total - this.spent;
+        return Math.max(0, this.total - this.spent);
       },
     },
   },

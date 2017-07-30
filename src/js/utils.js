@@ -27,6 +27,8 @@ function tickRegions(elapsedTicks, regions, resourcePool) {
 
     resource.amount += value;
   });
+
+  return resourcesDelta;
 }
 
 export { sumPropertyValues, tickRegions };

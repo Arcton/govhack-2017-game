@@ -183,6 +183,8 @@ const { resourcePool, population, happiness } = loadState((state) => {
   };
 });
 
+const resourcesCount = resourcePool.length;
+
 function save() {
   saveState({
     resourcePool,
@@ -203,7 +205,30 @@ const timer = new Tock({
     const elapsedTicks = (totalElapsedTime - prevTick) / millisPerTick;
     prevTick = totalElapsedTime;
 
-    tickRegions(elapsedTicks, regions, resourcePool);
+    const resourcesDelta = tickRegions(elapsedTicks, regions, resourcePool);
+    // TODO: population consumes resources
+    let newHappiness = 50;
+    const happinessPerResource = (happiness.total / 2) / (resourcesCount + 1);
+    let totalResourceDelta = 0;
+    // some happiness for resource production/consumption
+    Object.values(resourcesDelta).forEach((resourceDelta) => {
+      const clampedDelta = Math.min(Math.max(resourceDelta, -happinessPerResource), happinessPerResource);
+      newHappiness += clampedDelta;
+      totalResourceDelta += resourceDelta;
+    });
+    // some happiness for overall production/consumption
+    const clampedDelta = Math.min(Math.max(totalResourceDelta, -happinessPerResource), happinessPerResource);
+    newHappiness += clampedDelta;
+    const happinessDelta = (newHappiness - happiness.value) / 50;
+    happiness.value += happinessDelta;
+
+    // slowly move towards new value
+    const populationDelta = Math.round((happiness.value - (happiness.total / 2))) || 0;
+    population.total += populationDelta;
+
+    if (population.total < 0) {
+      // gameover!
+    }
 
     if ((tick.timeout % 60) === 0) {
       save();
