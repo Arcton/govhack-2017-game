@@ -6,12 +6,13 @@ import Progress from './model/progress-resource';
 import { ResourcePool } from './model/resource-pool';
 import { tickRegions } from './utils';
 import { saveState, loadState, resetState } from './loader';
+import { TICKS_PER_SECOND } from './consts';
 
 window.resetState = resetState;
 
 require('../index.html');
 
-const ticksPerSecond = 10;
+const ticksPerSecond = TICKS_PER_SECOND;
 const millisPerTick = 1000 / ticksPerSecond;
 
 const startingPopulation = 50000;

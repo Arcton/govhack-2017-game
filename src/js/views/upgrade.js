@@ -1,5 +1,6 @@
 import View from 'ampersand-view';
 import Game from '../main';
+import { TICKS_PER_SECOND } from '../consts';
 
 export default View.extend({
   template() {
@@ -13,7 +14,7 @@ export default View.extend({
             <use xlink:href="#${k}"></use>
           </svg>
         </span>
-        <span class="resource__delta">${costs[k]}</span>
+        <span class="resource__delta">${costs[k].toLocaleString()}</span>
       </div>`;
     });
 
@@ -23,6 +24,7 @@ export default View.extend({
     let gainsHtml = '';
     Object.keys(gains).forEach((k) => {
       const current = currentGains[k] || 0;
+      const delta = (gains[k] - current) * TICKS_PER_SECOND;
 
       gainsHtml += `<div class="resource">
         <span class="resource__name">
@@ -30,7 +32,7 @@ export default View.extend({
             <use xlink:href="#${k}"></use>
           </svg>
         </span>
-        <span class="resource__delta">${gains[k] - current}</span>
+        <span class="resource__delta">${delta > 0 ? '+' : ''}${delta.toLocaleString()} / s</span>
       </div>`;
     });
 

@@ -1,4 +1,5 @@
 import View from 'ampersand-view';
+import { TICKS_PER_SECOND } from '../consts';
 
 export default View.extend({
   template() {
@@ -9,7 +10,9 @@ export default View.extend({
           <use xlink:href="#${id}"></use>
         </svg>
       </span>
-      <span class="resource__delta" data-hook="delta"></span>
+      <span>
+        <span class="resource__delta" data-hook="delta"></span> / s
+      </span>
     </div>`;
   },
 
@@ -40,7 +43,7 @@ export default View.extend({
     this.resourceDelta = this.deltas[id] || 0;
 
     this.listenToAndRun(this.deltas, `change:${id}`, () => {
-      this.resourceDelta = this.deltas[id] || 0;
+      this.resourceDelta = (this.deltas[id] || 0) * TICKS_PER_SECOND;
     });
   },
 
