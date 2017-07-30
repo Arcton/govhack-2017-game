@@ -12,3 +12,19 @@
     margin: $v/2 0;
   }
 }
+
+@media screen and (min-width: 500px) {
+  .panel {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    & > div {
+      flex-grow: 1;
+      margin-left: $v*2;
+      margin-right: $v*2;
+      min-width: 40%;
+    }
+  }
+}
