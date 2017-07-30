@@ -147,7 +147,7 @@ const regions = {
     ],
   }),
   gisbourne: new Region({
-    name: 'Gisbourne',
+    name: 'Gisborne',
     cost: 47600,
     upgrades: [
       new Upgrade({
