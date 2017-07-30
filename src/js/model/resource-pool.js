@@ -1,5 +1,6 @@
 import Collection from 'ampersand-collection';
 import Resource from './resource';
+import { RESOURCES } from '../consts';
 
 const ResourceCollection = Collection.extend({
   model: Resource,
@@ -8,33 +9,7 @@ const ResourceCollection = Collection.extend({
 
 const ResourcePool = ResourceCollection.extend({
   initialize(attributes) {
-    this.add([
-      {
-        id: 'energy',
-        name: 'Energy',
-        consumptionPerCapita: 0.0002,
-      },
-      {
-        id: 'agriculture',
-        name: 'Agriculture',
-        consumptionPerCapita: 0.0001,
-      },
-      {
-        id: 'mining',
-        name: 'Mining',
-        consumptionPerCapita: 0.00013,
-      },
-      {
-        id: 'forestry',
-        name: 'Forestry',
-        consumptionPerCapita: 0.00007,
-      },
-      {
-        id: 'technology',
-        name: 'Technology',
-        consumptionPerCapita: 0.00012,
-      },
-    ]);
+    this.add(RESOURCES);
     if (attributes != null) {
       attributes.forEach((attribute) => {
         const instAttribute = this.get(attribute.id);

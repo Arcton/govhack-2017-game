@@ -498,9 +498,12 @@ const { resourcePool, population, happiness } = loadState((state) => {
             return;
           }
           upgrade.level = savedUpgrade.level;
-          Object.entries(savedUpgrade.costs).forEach(([resource, amount]) => {
-            upgrade.costs[resource] = amount;
-          });
+          if (savedUpgrade.costs != null) {
+            upgrade.costs.clear();
+            Object.entries(savedUpgrade.costs).forEach(([resource, amount]) => {
+              upgrade.costs.set(resource, amount);
+            });
+          }
         });
       }
     });
