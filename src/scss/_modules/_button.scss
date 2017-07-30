@@ -20,7 +20,7 @@
     color: $grey-dark;
   }
 
-  &:active {
+  &:active:not(:disabled) {
     box-shadow: none;
     transform: translate(0, 4px);
   }
