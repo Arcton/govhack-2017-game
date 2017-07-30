@@ -22,6 +22,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  @include user-select(none);
+  cursor: pointer;
 
   &__name {
     width: 26px;

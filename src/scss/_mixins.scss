@@ -13,3 +13,11 @@
   color: $fg;
   text-shadow: 0 $depth * 1px 0 $outline, 0 -1px 0 $outline, 1px 0 0 $outline, -1px 0 0 $outline;
 }
+
+@mixin user-select($value) {
+  user-select: $value;
+  -webkit-user-select: $value; /* webkit (safari, chrome) browsers */
+  -moz-user-select: $value; /* mozilla browsers */
+  -khtml-user-select: $value; /* webkit (konqueror) browsers */
+  -ms-user-select: $value; /* IE10+ */
+}

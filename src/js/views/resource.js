@@ -12,7 +12,7 @@ export default View.extend({
       </span>
       <span class="resource__amount" data-hook="amount"></span>
     </div>`;
-},
+  },
 
   derived: {
     displayAmount: {
@@ -27,6 +27,14 @@ export default View.extend({
 
   bindings: {
     displayAmount: '[data-hook=amount]',
+  },
+
+  events: {
+    click: 'click',
+  },
+
+  click(event) {
+    this.model.amount += 1000;
   },
 
   render({ containerEl }) {
