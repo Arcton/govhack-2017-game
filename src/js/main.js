@@ -4,7 +4,7 @@ import Upgrade from './model/upgrade';
 import Population from './model/population';
 import Progress from './model/progress-resource';
 import { ResourcePool } from './model/resource-pool';
-import { tickRegions } from './utils';
+import { tickRegions, updateResourcePool } from './utils';
 import { saveState, loadState, resetState } from './loader';
 import { TICKS_PER_SECOND } from './consts';
 
@@ -174,7 +174,8 @@ const { resourcePool, population, happiness } = loadState((state) => {
   const loadedResourcePool = new ResourcePool(savedResources);
   if (elapsedMs > 0) {
     const elapsedTicks = elapsedMs / millisPerTick;
-    tickRegions(elapsedTicks, regions, loadedResourcePool);
+    const resourcesDelta = tickRegions(elapsedTicks, regions);
+    updateResourcePool(resourcesDelta, loadedResourcePool);
   }
   return {
     resourcePool: loadedResourcePool,
@@ -206,18 +207,29 @@ const timer = new Tock({
     prevTick = totalElapsedTime;
 
     const resourcesDelta = tickRegions(elapsedTicks, regions, resourcePool);
-    // TODO: population consumes resources
+
+    // population consumes resources
+    resourcePool.forEach((resource) => {
+      const resourceDelta = -resource.consumptionPerCapita * population.total;
+      if (resourcesDelta[resource.id] == null) {
+        resourcesDelta[resource.id] = resourceDelta;
+      } else {
+        resourcesDelta[resource.id] += resourceDelta;
+      }
+    });
+    updateResourcePool(resourcesDelta, resourcePool);
+
     let newHappiness = 50;
     const happinessPerResource = (happiness.total / 2) / (resourcesCount + 1);
-    let totalResourceDelta = 0;
+    let totalDelta = 0;
     // some happiness for resource production/consumption
-    Object.values(resourcesDelta).forEach((resourceDelta) => {
-      const clampedDelta = Math.min(Math.max(resourceDelta, -happinessPerResource), happinessPerResource);
+    Object.values(resourcesDelta).forEach((delta) => {
+      const clampedDelta = Math.min(Math.max(delta, -happinessPerResource), happinessPerResource);
       newHappiness += clampedDelta;
-      totalResourceDelta += resourceDelta;
+      totalDelta += delta;
     });
     // some happiness for overall production/consumption
-    const clampedDelta = Math.min(Math.max(totalResourceDelta, -happinessPerResource), happinessPerResource);
+    const clampedDelta = Math.min(Math.max(totalDelta, -happinessPerResource), happinessPerResource);
     newHappiness += clampedDelta;
     const happinessDelta = (newHappiness - happiness.value) / 50;
     happiness.value += happinessDelta;

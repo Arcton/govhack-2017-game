@@ -11,7 +11,7 @@ function sumPropertyValues(dest, source) {
   });
 }
 
-function tickRegions(elapsedTicks, regions, resourcePool) {
+function tickRegions(elapsedTicks, regions) {
   const resourcesDelta = {};
   Object.values(regions).forEach((region) => {
     if (region.isActive) {
@@ -19,6 +19,10 @@ function tickRegions(elapsedTicks, regions, resourcePool) {
     }
   });
 
+  return resourcesDelta;
+}
+
+function updateResourcePool(resourcesDelta, resourcePool) {
   Object.entries(resourcesDelta).forEach(([key, value]) => {
     const resource = resourcePool.get(key);
     if (resource == null) {
@@ -27,8 +31,6 @@ function tickRegions(elapsedTicks, regions, resourcePool) {
 
     resource.amount += value;
   });
-
-  return resourcesDelta;
 }
 
-export { sumPropertyValues, tickRegions };
+export { sumPropertyValues, tickRegions, updateResourcePool };

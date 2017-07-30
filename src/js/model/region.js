@@ -32,6 +32,7 @@ export default State.extend({
   },
 
   unlock() {
+    if (this.isActive) return;
     Game.population.spent += this.cost;
     this.isActive = true;
     Game.save();

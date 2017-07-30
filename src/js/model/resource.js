@@ -6,6 +6,7 @@ export default State.extend({
     amount: 'number',
     name: 'string',
     isActive: 'boolean',
+    consumptionPerCapita: 'number',
   },
 
   initialize() {
