@@ -1,7 +1,10 @@
 
 const key = 'NewSeizeLand';
 
+let resetting = false;
+
 function saveState(state) {
+  if (resetting) return;
   window.localStorage[key] = JSON.stringify(state);
 }
 
@@ -15,6 +18,7 @@ function loadState(callback) {
 }
 
 function resetState() {
+  resetting = true;
   window.localStorage[key] = null;
   document.location = document.location;
 }

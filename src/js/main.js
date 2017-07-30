@@ -193,6 +193,8 @@ function save() {
   });
 }
 
+window.addEventListener('beforeunload', save);
+
 let prevTick = 0;
 const timer = new Tock({
   interval: millisPerTick,
