@@ -2138,7 +2138,7 @@ var regions = {
     })]
   }),
   gisbourne: new _region2.default({
-    name: 'Gisbourne',
+    name: 'Gisborne',
     cost: 47600,
     upgrades: [new _upgrade2.default({
       name: 'Technology',
