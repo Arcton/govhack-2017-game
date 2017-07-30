@@ -15,6 +15,22 @@ export default View.extend({
         return (this.model.value / this.model.total) * 100;
       },
     },
+    rangeName: {
+      deps: ['progressPercent'],
+      fn() {
+        const pc = this.progressPercent;
+
+        if (pc < 20) {
+          return 'critical';
+        } else if (pc < 50) {
+          return 'low';
+        } else if (pc < 80) {
+          return 'medium';
+        }
+
+        return 'high';
+      },
+    },
   },
 
   bindings: {
@@ -22,6 +38,15 @@ export default View.extend({
     progressPercent: {
       type(el, value) {
         el.style.width = `${value}%`;
+      },
+      hook: 'progress',
+    },
+
+    rangeName: {
+      type(el, value, previousValue) {
+        const classBase = 'progress__inner';
+        el.classList.remove(`${classBase}--${previousValue}`);
+        el.classList.add(`${classBase}--${value}`);
       },
       hook: 'progress',
     },

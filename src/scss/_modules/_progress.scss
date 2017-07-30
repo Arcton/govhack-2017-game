@@ -7,7 +7,23 @@
 
   &__inner {
     height: 100%;
-    background: $yellow;
+    background: $red-light;
+
+    &--critical {
+      background: $red-light;
+    }
+
+    &--low {
+      background: #f5a139;
+    }
+
+    &--medium {
+      background: $yellow;
+    }
+
+    &--high {
+      background: #0cd03f;
+    }
   }
 }
 
